@@ -5,32 +5,19 @@ import ru.spbau.fedorov.algo.List;
 /**
  * HashTable implemented using separate chaining and forward list
  */
-
 public class HashTable {
-
-    private List[] data;
-    private int size;
-    private int capacity;
-
     private static int PRIME = 43;
     private static int START_CAPACITY = 11;
 
-    /**
-     * Creates a HashTable with capacity = 11
-     */
-
-    public HashTable() {
-        data = new List[START_CAPACITY];
-        capacity = START_CAPACITY;
-        size = 0;
-    }
+    private List[] data = new List[START_CAPACITY];
+    private int size = 0;
+    private int capacity = START_CAPACITY;
 
     /**
      * Get size
      *
      * @return Number of keys in HashTable
      */
-
     public int size() {
         return size;
     }
@@ -41,7 +28,6 @@ public class HashTable {
      * @param key String to be searched for
      * @return true if there is such element and false otherwise
      */
-
     public boolean contains(String key) {
         int hash = getHash(key);
         return data[hash] != null && data[hash].find(key) != null;
@@ -53,7 +39,6 @@ public class HashTable {
      * @param key String to be searched for
      * @return found string or null if there is no such element
      */
-
     public String get(String key) {
         int hash = getHash(key);
         if (data[hash] == null)
@@ -68,7 +53,6 @@ public class HashTable {
      * @param value String to be stored
      * @return previous value with such key or null if there is no one
      */
-
     public String put(String key, String value) {
         int hash = getHash(key);
         if (data[hash] == null)
@@ -91,7 +75,6 @@ public class HashTable {
      * @param key String to be searched for
      * @return deleted value with such key or null if there is no one
      */
-
     public String remove(String key) {
         int hash = getHash(key);
         if (data[hash] == null)
@@ -107,7 +90,6 @@ public class HashTable {
     /**
      * Removes all elements from HashTable
      */
-
     public void clear() {
         for (List list : data)
             if (list != null)

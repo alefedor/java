@@ -6,7 +6,6 @@ import ru.spbau.fedorov.algo.HashTable;
  * Class with basic tests for HashTable
  * Contains method main
  */
-
 public class Test {
 
     private static void newAssert(boolean statement) {

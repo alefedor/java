@@ -3,10 +3,9 @@ package ru.spbau.fedorov.algo;
 /**
  * Forward linked list
  */
-
 public class List {
 
-    private Node head;
+    private Node head = null;
 
     private class Node {
         public Node next;
@@ -14,19 +13,10 @@ public class List {
         String key;
 
         public Node(String k, String v) {
-            key = new String(k);
-            value = new String(v);
+            key = k;
+            value = v;
             next = null;
         }
-
-    }
-
-    /**
-     * Creates empty list
-     */
-
-    public List(){
-        head = null;
     }
 
     /**
@@ -34,18 +24,16 @@ public class List {
      *
      * @return true if there are no elements in list and false otherwise
      */
-
     public boolean empty() {
         return head == null;
     }
 
     /**
-     * Adds node to List
+     * Adds pair (Key, Value) to the head of the List
      *
      * @param key First String to be contained in Node
      * @param value Second String to be contained in Node
      */
-
     public void insert(String key, String value) {
         Node prev = head;
         head = new Node(key, value);
@@ -58,7 +46,6 @@ public class List {
      * @param key String to be searched for
      * @return Second String or null if there is no such String
      */
-
     public String find(String key) {
         Node cur = head;
         while (cur != null){
@@ -75,7 +62,6 @@ public class List {
      * @param key String to be searched for
      * @return Second String or null if there is no such String
      */
-
     public String erase(String key) {
         if (head == null)
             return null;
@@ -100,11 +86,10 @@ public class List {
     }
 
     /**
-     * Deletes the first Node of the List
+     * Deletes the pair (Key, Value) in the head of the List
      *
-     * @return Second String of the first deleted Node
+     * @return Array with exactly two Strings: Key, Value of the deleted pair
      */
-
     public String[] pop() {
         String[] res = {head.key, head.value};
         head = head.next;
@@ -112,9 +97,8 @@ public class List {
     }
 
     /**
-     * Deletes all Node in List
+     * Deletes all nodes in List
      */
-
     public void clear() {
         head = null;
     }
