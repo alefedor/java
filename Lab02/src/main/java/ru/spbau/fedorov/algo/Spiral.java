@@ -6,8 +6,8 @@ import java.util.Comparator;
 public class Spiral {
     private int[][] data;
 
-    private static int[] dx = {1, 0, -1, 0};
-    private static int[] dy = {0, 1, 0, -1};
+    private static final int[] dx = {1, 0, -1, 0};
+    private static final int[] dy = {0, 1, 0, -1};
 
     /**
      * Constructs a member of Spiral type using a matrix
