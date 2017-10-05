@@ -102,5 +102,5 @@ public class List {
     public void clear() {
         head = null;
     }
-}
 
+}
