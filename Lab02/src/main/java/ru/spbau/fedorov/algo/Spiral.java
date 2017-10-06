@@ -1,8 +1,13 @@
 package ru.spbau.fedorov.algo;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Class which receives matrix and is able to sort matrix columns
+ * by first element, to print matrix and to print matrix in a spiral way
+ */
 public class Spiral {
     private int[][] data;
 
@@ -15,17 +20,16 @@ public class Spiral {
      * @param mat -- matrix nxn of int where n should be odd
      */
     Spiral(int[][] mat) {
-        boolean correct = true;
-        if (mat == null || mat.length % 2 != 1)
-            correct = false;
+        if (mat == null)
+            throw new IllegalArgumentException("Null matrix");
+        else
+        if(mat.length % 2 != 1)
+            throw new IllegalArgumentException("Dimension of matrix is even");
         else {
             for (int i = 0; i < mat.length; i++)
                 if (mat[i] == null || mat[i].length != mat.length)
-                    correct = false;
+                    throw new IllegalArgumentException("Matrix is not square");
         }
-
-        if (!correct)
-            throw new IllegalArgumentException("Not valid matrix");
 
         data = new int[mat.length][mat.length];
         for (int i = 0; i < data.length; i++)
@@ -41,7 +45,7 @@ public class Spiral {
      * Prints elements of contained matrix on the screen in spiral order
      * Start is the center
      */
-    public void printSpiral() {
+    public void printSpiral(PrintStream out) {
         int posX = data.length / 2;
         int posY = data.length / 2;
         int direction = 0;
@@ -50,8 +54,8 @@ public class Spiral {
             for (int step = 0; step < 2; step++) {
                 for (int i = 0; i < pathLen; i++) {
                     if (correctPosition(posX, posY)) {
-                        System.out.print(data[posX][posY]);
-                        System.out.print(" ");
+                        out.print(data[posX][posY]);
+                        out.print(" ");
                         posX += dx[direction];
                         posY += dy[direction];
                     } else
@@ -65,15 +69,15 @@ public class Spiral {
     /**
      * Prints elements of matrix on the screen
      */
-    public void printMatrix() {
+    public void printMatrix(PrintStream out) {
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length; j++) {
-                System.out.print(data[j][i]);
+                out.print(data[j][i]);
                 if (j + 1 < data.length)
-                    System.out.print(" ");
+                    out.print(" ");
                 else
                 if (i + 1 < data.length)
-                    System.out.print("\n");
+                    out.print("\n");
             }
         }
     }

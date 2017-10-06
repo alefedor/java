@@ -11,16 +11,6 @@ import java.io.PrintStream;
 public class SpiralTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    @Before
-    public void createMockOutput() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void removeMockOutput() {
-        System.setOut(null);
-    }
-
     @Test
     public void testConstructionOneElement(){
         Spiral sp = new Spiral(new int[][] {{1}});
@@ -34,28 +24,28 @@ public class SpiralTest {
     @Test
     public void testPrintMatrixOneElement(){
         Spiral sp = new Spiral(new int[][] {{1}});
-        sp.printMatrix();
+        sp.printMatrix(new PrintStream(outContent));
         Assert.assertEquals("1", outContent.toString());
     }
 
     @Test
     public void testPrintMatrix(){
         Spiral sp = new Spiral(new int[][] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
-        sp.printMatrix();
+        sp.printMatrix(new PrintStream(outContent));
         Assert.assertEquals("1 2 3\n4 5 6\n7 8 9", outContent.toString());
     }
 
     @Test
     public void testPrintSpiralOneElement(){
         Spiral sp = new Spiral(new int[][] {{1}});
-        sp.printSpiral();
+        sp.printSpiral(new PrintStream(outContent));
         Assert.assertEquals("1 ", outContent.toString());
     }
 
     @Test
     public void testPrintSpiral(){
         Spiral sp = new Spiral(new int[][] {{7, 8, 9}, {6, 1, 2}, {5, 4, 3}});
-        sp.printSpiral();
+        sp.printSpiral(new PrintStream(outContent));
         Assert.assertEquals("1 2 3 4 5 6 7 8 9 ", outContent.toString());
     }
 
@@ -63,7 +53,7 @@ public class SpiralTest {
     public void testSortColumnsOneElement(){
         Spiral sp = new Spiral(new int[][] {{1}});
         sp.sortColumns();
-        sp.printMatrix();
+        sp.printMatrix(new PrintStream(outContent));
         Assert.assertEquals("1", outContent.toString());
     }
 
@@ -71,7 +61,7 @@ public class SpiralTest {
     public void testSortColumnsAlreadySorted(){
         Spiral sp = new Spiral(new int[][] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
         sp.sortColumns();
-        sp.printMatrix();
+        sp.printMatrix(new PrintStream(outContent));
         Assert.assertEquals("1 2 3\n4 5 6\n7 8 9", outContent.toString());
     }
 
@@ -79,7 +69,7 @@ public class SpiralTest {
     public void testSortColumns(){
         Spiral sp = new Spiral(new int[][] {{9, 8, 2}, {4, 7, 1}, {5, 3, 6}});
         sp.sortColumns();
-        sp.printMatrix();
+        sp.printMatrix(new PrintStream(outContent));
         Assert.assertEquals("2 8 9\n1 7 4\n6 3 5", outContent.toString());
     }
 
