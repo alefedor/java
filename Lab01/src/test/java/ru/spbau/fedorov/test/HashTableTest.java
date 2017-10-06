@@ -9,12 +9,18 @@ import ru.spbau.fedorov.algo.HashTable;
 public class HashTableTest {
     private HashTable table;
 
+    private class HashTableBadHash extends HashTable{
+        protected int getHash(String s) {
+            return 0;
+        }
+    }
+
     @BeforeEach
     public void setUp() {
         table = new HashTable();
     }
 
-    private void fillHashTable(int num) {
+    private void fillHashTable(HashTable table, int num) {
         String s = "a";
         String v = "v";
         for (int i = 0; i < num; i++) {
@@ -26,12 +32,12 @@ public class HashTableTest {
 
     @Test
     public void testPutElement() {
-        fillHashTable(1);
+        fillHashTable(table, 1);
     }
 
     @Test
     public void testPutElements() {
-        fillHashTable(5);
+        fillHashTable(table, 5);
     }
 
     @Test
@@ -47,7 +53,7 @@ public class HashTableTest {
 
     @Test
     public void testSize(){
-        fillHashTable(10);
+        fillHashTable(table, 10);
         Assertions.assertEquals(10, table.size());
     }
 
@@ -103,7 +109,7 @@ public class HashTableTest {
 
     @Test
     public void testGetInManyElements() {
-        fillHashTable(10);
+        fillHashTable(table, 10);
         Assertions.assertEquals("vbbb", table.get("aaaa"));
     }
 
@@ -131,7 +137,7 @@ public class HashTableTest {
 
     @Test
     public void testRemoveInManyElements() {
-        fillHashTable(10);
+        fillHashTable(table, 10);
         Assertions.assertEquals("vbbb", table.remove("aaaa"));
         Assertions.assertEquals(null, table.remove("aaaa"));
     }
@@ -143,14 +149,14 @@ public class HashTableTest {
 
     @Test
     public void clearManyElements() {
-        fillHashTable(10);
+        fillHashTable(table, 10);
         table.clear();
         Assertions.assertEquals(false, table.contains("aaaa"));
     }
 
     @Test
     public void testManyElements() {
-        fillHashTable(100);
+        fillHashTable(table, 100);
         String s = "a";
         String v = "v";
 
@@ -179,6 +185,35 @@ public class HashTableTest {
         }
 
         Assertions.assertEquals(0, table.size());
+    }
+
+    @Test
+    public void testPutManyCollisions() {
+        HashTableBadHash ht = new HashTableBadHash();
+        fillHashTable(ht, 10);
+
+        String s = "a";
+        for (int i = 0; i < 10; i++) {
+            Assertions.assertEquals(true, ht.contains(s));
+            s = s + "a";
+        }
+    }
+
+    @Test
+    public void testSizeInManyCollisions() {
+        HashTableBadHash ht = new HashTableBadHash();
+        fillHashTable(ht, 10);
+        Assertions.assertEquals(10, ht.size());
+    }
+
+    @Test
+    public void testRemoveInManyCollisions() {
+        HashTableBadHash ht = new HashTableBadHash();
+        fillHashTable(ht, 10);
+
+        Assertions.assertEquals("vbb", ht.remove("aaa"));
+        Assertions.assertEquals(false, ht.contains("aaa"));
+        Assertions.assertEquals(true, ht.contains("aaaaa"));
     }
 
 }
