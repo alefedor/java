@@ -98,7 +98,7 @@ public class HashTable {
         size = 0;
     }
 
-    private int getHash(String s) {
+    protected int getHash(String s) {
         long hash = 0;
         for (int i = 0; i < s.length(); i++){
             hash = (hash * PRIME + s.charAt(i)) % capacity;
