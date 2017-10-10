@@ -26,8 +26,6 @@ public class Set<T> {
         private boolean canGoRight() {
             return right != null;
         }
-
-        //...
     }
 
     /**
