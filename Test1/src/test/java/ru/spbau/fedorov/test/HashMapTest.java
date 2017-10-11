@@ -42,4 +42,22 @@ public class HashMapTest {
         Assert.assertEquals((Integer)2, mp.get(1));
     }
 
+    @Test
+    public void testPutEqual() {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        mp.put(1, 2);
+        Assert.assertEquals((Integer)2, mp.put(1, 3));
+    }
+
+    @Test
+    public void testPutMany() {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        mp.put(1, 2);
+        mp.put(3, 4);
+        mp.put(5, 6);
+        Assert.assertEquals(3, mp.size());
+        Assert.assertEquals(true, mp.containsKey(1));
+        Assert.assertEquals(true, mp.containsKey(3));
+        Assert.assertEquals(true, mp.containsKey(5));
+    }
 }
