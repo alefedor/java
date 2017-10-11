@@ -40,7 +40,7 @@ public class HashMap<K, V> implements Map<K,V>{
     }
 
     private int getHash(K a) {
-        return a.hashCode() % size;
+        return a.hashCode() % capacity;
     }
 
     private void rebuild() {
