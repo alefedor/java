@@ -7,7 +7,7 @@ import java.io.*;
  * consisting of uppercase and lowercase English characters
  * and quickly find them
  */
-public class Trie implements Serializable{
+public class Trie implements Serializable {
 
     private Node root = new Node();
 
@@ -122,7 +122,7 @@ public class Trie implements Serializable{
         private boolean isEnd = false;
 
         private boolean canGo(char symbol) {
-            if (symbol < 'A' || symbol > 'z')
+            if (!Character.isLetter(symbol))
                 throw new IllegalArgumentException("Illegal characters");
 
             return next[symbol - 'A'] != null;

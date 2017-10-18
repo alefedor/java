@@ -131,7 +131,7 @@ public class TrieTest {
     }
 
     @Test
-    public void testSerializeDeserializeEmptyTrie() {
+    public void testSerializeDeserializeEmptyTrie() throws Exception {
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()){
             trie.serialize(out);
             try (ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray())) {
@@ -139,13 +139,11 @@ public class TrieTest {
             } catch (Exception e){
                 fail();
             }
-        } catch (Exception e){
-            fail(); // A error occurred
         }
     }
 
     @Test
-    public void testSerializeDeserialize() {
+    public void testSerializeDeserialize() throws Exception {
         Trie newTrie = new Trie();
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()){
@@ -157,8 +155,6 @@ public class TrieTest {
             } catch (Exception e){
                 fail();
             }
-        } catch (Exception e){
-            fail(); // A error occurred
         }
 
         assertEquals(4, newTrie.size());
