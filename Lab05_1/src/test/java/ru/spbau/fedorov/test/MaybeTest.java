@@ -99,7 +99,7 @@ public class MaybeTest {
     }
 
     @Test
-    public void testReadWriteIntegersWithMaybe() {
+    public void testReadWriteIntegersWithMaybe() throws Exception{
         List<Maybe<Integer>> list = readIntegers("input.txt");
         assertNotEquals(null, list);
 
@@ -129,8 +129,6 @@ public class MaybeTest {
             }
             if (cnt != expectedLines.length)
                 fail();
-        } catch (Exception e) {
-            fail();
         }
     }
 
