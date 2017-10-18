@@ -136,8 +136,6 @@ public class TrieTest {
             trie.serialize(out);
             try (ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray())) {
                 trie.deserialize(in);
-            } catch (Exception e){
-                fail();
             }
         }
     }
@@ -152,8 +150,6 @@ public class TrieTest {
             trie.serialize(out);
             try (ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray())) {
                 newTrie.deserialize(in);
-            } catch (Exception e){
-                fail();
             }
         }
 
