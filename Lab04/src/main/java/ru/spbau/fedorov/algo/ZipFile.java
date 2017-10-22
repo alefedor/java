@@ -23,7 +23,7 @@ public class ZipFile {
      * Method main, which finds all zip archives in directory and unzips all files
      * in them matching regex
      * @param args array of Strings which should consist of two elements {path to search in, regex to match}
-     * @throws IOException
+     * @throws IOException if an error occurred while working with files
      */
     public static void main(String[] args) throws IOException{
         if (args.length != 2){
@@ -34,7 +34,7 @@ public class ZipFile {
         final String path = args[0];
         final String regex = args[1];
         for (String zipName : getZipFiles(path))
-            UnzipMatchingRegex(zipName, regex, path);
+            unzipMatchingRegex(zipName, regex, path);
     }
 
     @NotNull
@@ -68,7 +68,7 @@ public class ZipFile {
         return (magicBytes == 0x504b0304) || (magicBytes == 0x504b0506) || (magicBytes == 0x504b0708);
     }
 
-    private static void UnzipMatchingRegex(@NotNull String zipName, @NotNull String regex, @NotNull String path) throws IOException{
+    private static void unzipMatchingRegex(@NotNull String zipName, @NotNull String regex, @NotNull String path) throws IOException{
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(zipName))) {
             ZipEntry ze = zis.getNextEntry();
             while (ze != null) {
