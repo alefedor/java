@@ -1,6 +1,6 @@
 package ru.spbau.fedorov.algo;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.AbstractSet;
 import java.util.Collection;
@@ -172,6 +172,7 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         return true;
     }
 
+    @NotNull
     @Override
     public Iterator<E> iterator() {
         if (reverseOrder)
@@ -185,6 +186,7 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         return size;
     }
 
+    @NotNull
     @Override
     public Iterator<E> descendingIterator() {
         if (reverseOrder)
