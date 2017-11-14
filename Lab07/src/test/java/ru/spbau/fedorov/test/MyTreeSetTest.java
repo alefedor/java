@@ -1,5 +1,6 @@
 package ru.spbau.fedorov.test;
 
+import org.jetbrains.annotations.TestOnly;
 import org.junit.Test;
 import ru.spbau.fedorov.algo.MyTreeSet;
 
@@ -65,6 +66,14 @@ public class MyTreeSetTest {
         assertTrue(set.contains(5));
         assertTrue(set.contains(1));
         assertFalse(set.contains(10));
+    }
+
+    @Test
+    public void testIsEmpty() {
+        MyTreeSet<Integer> set = new MyTreeSet<>();
+        assertTrue(set.isEmpty());
+        set.add(1);
+        assertFalse(set.isEmpty());
     }
 
     @Test

@@ -197,6 +197,11 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
     }
 
     @Override
+    public boolean isEmpty() {
+        return (size == 0);
+    }
+
+    @Override
     public MyTreeSet<E> descendingSet() {
         return new MyTreeSet<>(this);
     }
