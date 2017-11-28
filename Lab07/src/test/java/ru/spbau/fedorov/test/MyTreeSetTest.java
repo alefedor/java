@@ -114,8 +114,8 @@ public class MyTreeSetTest {
             assertTrue(set.add(i));
         }
         int i = 0;
-        for (Iterator<Integer> iterator = set.iterator(); iterator.hasNext(); ) {
-            assertEquals(i, (int)iterator.next());
+        for (Integer value : set) {
+            assertEquals(i, (int)value);
             i++;
         }
         assertEquals(100, i);
@@ -128,9 +128,9 @@ public class MyTreeSetTest {
             assertTrue(set.add(i));
         }
         int i = 100;
-        for (Iterator<Integer> iterator = set.descendingIterator(); iterator.hasNext(); ) {
+        for (Integer value : set) {
             i--;
-            assertEquals(i, (int)iterator.next());
+            assertEquals(i, (int)value);
         }
         assertEquals(0, i);
     }
@@ -143,9 +143,9 @@ public class MyTreeSetTest {
         }
         MyTreeSet<Integer> descendingTree = set.descendingSet();
         int i = 100;
-        for (Iterator<Integer> iterator = descendingTree.iterator(); iterator.hasNext(); ) {
+        for (Integer value : descendingTree) {
             i--;
-            assertEquals(i, (int)iterator.next());
+            assertEquals(i, (int)value);
         }
         assertEquals(0, i);
     }

@@ -12,7 +12,7 @@ import java.util.function.Function;
  * Implementation of set using binary tree and a list over it
  * @param <E> type of key to store
  */
-public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implements IMyTreeSet<E>{
+public class MyTreeSet<E extends Comparable<? super E>> extends AbstractSet<E> implements IMyTreeSet<E>{
 
     private Comparator<? super E> comparator;
     private Node root;
@@ -36,12 +36,18 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         comparator = cmpr;
     }
 
-    private MyTreeSet(@NotNull MyTreeSet<E> st) {
+
+    /**
+     * Construct set on the same data
+     * @param st set to be based on
+     * @param shouldReverse if true resulting set will have reversed order of elements
+     */
+    private MyTreeSet(@NotNull MyTreeSet<E> st, boolean shouldReverse) {
         root = st.root;
         first = st.first;
         last = st.last;
         size = st.size();
-        reverseOrder = !st.reverseOrder;
+        reverseOrder = st.reverseOrder ^ shouldReverse;
         comparator = st.comparator;
     }
 
@@ -84,7 +90,7 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
                 return v;
             else
                 return placeToInsert(v.left, key);
-        }else{
+        } else {
             if (v.right == null)
                 return v;
             else
@@ -162,7 +168,7 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         size--;
         if (node.left == null){
             hang(node.parent, node, node.right);
-        }else{
+        } else {
             swapKeys(node.prev, node);
             hang(node.prev.parent, node.prev, node.prev.left);
             if (node.prev.prev != null)
@@ -203,7 +209,7 @@ public class MyTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
 
     @Override
     public MyTreeSet<E> descendingSet() {
-        return new MyTreeSet<>(this);
+        return new MyTreeSet<>(this, true);
     }
 
     @Override
