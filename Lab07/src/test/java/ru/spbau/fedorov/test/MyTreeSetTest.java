@@ -128,9 +128,9 @@ public class MyTreeSetTest {
             assertTrue(set.add(i));
         }
         int i = 100;
-        for (Integer value : set) {
+        for (Iterator<Integer> iterator = set.descendingIterator(); iterator.hasNext(); ) {
             i--;
-            assertEquals(i, (int)value);
+            assertEquals(i, (int)iterator.next());
         }
         assertEquals(0, i);
     }
